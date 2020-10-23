@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="../images/logo.png" sizes="64x64">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/libs/css/style.css">
+    <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="../assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <script src="../libraries/p5.dom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js" charset="utf-8"></script>
+    
+    <script src="../libraries/jquery.mapael.js"></script>
+    <script src="../libraries/guatemala.js"></script>
+    <script src="../js/script_guatemala.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>RISK PROFILE GUATEMALA</title>
+
+    <style>
+        .mapael .mapTooltip {
+            position: absolute;
+            background-color: #fff;
+            
+            opacity: 0.70;
+            filter: alpha(opacity=70);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1000;
+            max-width: 200px;
+            display: none;
+            color: #343434;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <img src="../images/logo.png" alt="logoTBC" style="width: 10vh; padding: 5px;">
+                <a class="navbar-brand" style="font-size: 150%; color: #3d405c;" href="../index.html">TOTAL RISK TBC MEXICO</a>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">MENU</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                MENU
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="../index.html"  aria-controls="submenu-1"><i class="fa fa-fw fa-exclamation-triangle"></i>RISK PROFILE MEXICO</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="risk_guatemala.html"  aria-controls="submenu-1"><i class="fa fa-fw fa-exclamation-triangle"></i>RISK PROFILE GUATEMALA</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="input_data.html"  aria-controls="submenu-1"><i class="fa fa-fw fa-pencil-alt"></i>INPUT DATA</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <!-- ============================================================== -->
+                    <!-- pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">RISK PROFILE GUATEMALA</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="ecommerce-widget">
+                        
+                        <br>
+                        <div id="graficas_rh">
+
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <div class="">
+                                        <select class="btn btn-secondary" name="selectMonth" id="selectMonth">
+                                            <option value="0">MONTH</option>
+                                        </select>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="">
+                                        <select class="btn btn-secondary" name="selectYear" id="selectYear">
+                                            <option value="0">YEAR</option>
+                                            
+                                        </select>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-secondary" id="btnBuscar" style="border-radius: 10px;"><i class="fa fa-fw fa-search"></i> SEARCH </button>
+                                </div>
+                            </div>
+                            
+                            <br><br>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card ">
+                                        <div class="card-body ">
+                                            <h5 class="text-muted">RISK MAP</h5>
+                                        </div>
+                                        
+                                        <div class="mapcontainer">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="map" style="margin-left: 5%;">
+                                                        <span>CARGANDO MAPA...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="areaLegend">
+                                                        <span>CARGANDO ESCALAS...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            <div class="card border-3 border-top border-top-primary-higher">
+                                                <div class="card-body ">
+                                                    <h5 class="text-muted ">HIGHER RISK </h5>
+                                                    <div class="metric-value d-inline-block ">
+                                                        <h1 class="mb-1 " id="higher_risk">-</h1>
+                                                    </div>
+                                                    <div class="metric-label d-inline-block float-right text-success font-weight-bold ">
+                                                        <span class="icon-circle-medium text-muted "><i class="fa fa-fw fa-clock"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                        
+                                    <div class="row">
+                                        <div class="card " id="top_ten">
+                                            <h5 class="card-header" style="color: white;">RISK DATA</h5>
+                                            <div class="card-body p-0 ">
+                                                <div class="table-responsive ">
+                                                    <table class="table no-wrap p-table ">
+                                                        <thead class="bg-light ">
+                                                            <tr class="border-0 ">
+                                                                <th class="border-0">AREA</th>
+                                                                <th class="border-0">RISK AMOUNT</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="t_rank_risk1">
+                                                            <tr>
+                                                                <td>OPERACIONAL AUDITS RESULTS</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>INVENTORY COUNT RESULTS</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RECEIVABLES</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>MARGIN</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                
+                                                                <td>COLLECTION</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                
+                                                                <td>INTERNAL SECURITY</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                
+                                                                <td>EXTERNAL SECURITY</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card ">
+                                        <div class="card-body ">
+                                            <h5 class="text-muted">RISK DATA</h5>
+                                        </div>
+                                        <div class="chart-container" style="padding: 5%;">
+                                            <canvas id="chart-mes"></canvas>
+                                        </div>
+                                    </div>    
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card border-3 border-top border-top-primary">
+                                        <div class="card-body ">
+                                            <h5 class="text-muted ">TREND</h5>
+                                            <div class="metric-value d-inline-block ">
+                                                <h1 class="mb-1 " id="casos_esperados">2.3</h1>
+                                            </div>
+                                            <div class="metric-label d-inline-block float-right text-success font-weight-bold ">
+                                                <span class="icon-circle-medium text-muted "><i class="fa fa-fw fa-clock"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card border-3 border-top border-top-primary">
+                                        <div class="card-body ">
+                                            <h5 class="text-muted ">AMOUNT EXPECTED</h5>
+                                            <div class="metric-value d-inline-block ">
+                                                <h1 class="mb-1 " id="casos_esperados">5.23</h1>
+                                            </div>
+                                            <div class="metric-label d-inline-block float-right text-success font-weight-bold ">
+                                                <span class="icon-circle-medium text-muted "><i class="fa fa-fw fa-clock"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card ">
+                                        <div class="card-body ">
+                                            <h5 class="text-muted">HISTORY RISK</h5>
+                                        </div>
+                                        <div class="chart-container" style="padding: 5%;">
+                                            <canvas id="chart-pendiente"></canvas>
+                                        </div>
+                                    </div> 
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card ">
+                                        <div class="card-body ">
+                                            <h5 class="text-muted">FORECAST</h5>
+                                        </div>
+                                        <div class="chart-container" style="padding: 5%;">
+                                            <canvas id="chart-historico"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <!-- bootstap bundle js -->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    
+</html>
